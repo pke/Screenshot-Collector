@@ -1,0 +1,24 @@
+﻿.item {
+    position:relative;
+}
+
+.item .title {
+    position:absolute;
+    bottom: 0;
+    left:0;
+    background-color:rgba(0,0,0,.8);
+}
+
+section[role=main] .noClipboardImage:not([imageInClipboard='true']) {
+    display:none;
+}
+
+section[role=main]:not([context=share]) #cancel {
+    display:none;
+}
+
+button.chevron {
+  border-left:none;
+  display:inline;
+  min-width:1em;
+}

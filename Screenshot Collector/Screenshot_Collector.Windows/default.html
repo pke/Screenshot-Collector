@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <!-- Screenshot_Collector.Windows references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+</head>
+<body>
+    <section role="main" data-win-bind="
+        this['context']:context WinJS.Binding.setAttributeOneTime;
+        this['quickLinkId']:shareOperation.quickLinkId WinJS.Binding.setAttributeOneTime"
+        >
+        <p class="noClipboardImage" data-win-bind="this['imageInClipboard']:imageInClipboard WinJS.Binding.setAttributeOneTime">No image found in Clipboard</p>
+        <div id="shareItemTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="item">
+                <h3 class="title" data-win-bind="textContent:title"></h3>
+                <img data-win-bind="src:thumbnail" />
+                <span data-win-bind="textContent:uri"></span>
+                <span data-win-bind="textContent:text"></span>
+            </div>
+        </div>
+        <h2>Select screenshots to save</h2>
+        <div id="items" data-win-control="WinJS.UI.ListView"
+             data-win-options="{
+                itemDataSource:app.share.items.dataSource,
+                itemTemplate: shareItemTemplate,
+                tapBehavior: 'toggleSelect',
+                layout : {type: WinJS.UI.ListLayout}
+             }">
+        </div>
+        <p>Make a screenshot in Windows using the <pre>PrntScr</pre> key and come back to this app to save the screenshot in your Pictures Screenshots folder.</p>
+        <button id="save" type="submit" disabled data-win-bind="disabled:ready app.binding.disabled">Save</button><button style="display:none" id="saveAndOpenMenuDropper" type="submit" disabled data-win-bind="disabled:ready app.binding.disabled" class="chevron">&#xe099;</button>
+        <div id="saveAndOpenMenu" data-win-control="WinJS.UI.Menu">
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'saveAndOpen', label:'Save & Open'}" onclick="app.ui.saveAndOpen();" _data-win-res="{winControl: { label:'inspection/finish'}}"></button>
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'saveAndOpen', label:'Save & Open Folder'}" onclick="app.ui.saveAndOpenFolder();" _data-win-res="{winControl: { label:'inspection/finish'}}"></button>
+        </div>
+    </section>
+</body>
+</html>
